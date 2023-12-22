@@ -86,7 +86,7 @@ def run_infinite_post_data_loop():
                 user_result = dict(row._mapping)
             
             ### Send pin_result JSON message
-            invoke_url = "https://nsfytprkye.execute-api.us-east-1.amazonaws.com/demo/topic/0a4ac73a0561.pin"
+            invoke_url = "https://nsfytprkye.execute-api.us-east-1.amazonaws.com/demo/topics/0a4ac73a0561.pin"
             payload = json.dumps({
                 "records": [
                     {
@@ -109,7 +109,7 @@ def run_infinite_post_data_loop():
             response = requests.request("POST", invoke_url, headers=headers, data=payload)
 
             ### Send geo_result JSON message
-            invoke_url = "https://nsfytprkye.execute-api.us-east-1.amazonaws.com/demo/topic/0a4ac73a0561.geo"
+            invoke_url = "https://nsfytprkye.execute-api.us-east-1.amazonaws.com/demo/topics/0a4ac73a0561.geo"
             payload = json.dumps({
                 "records": [
                     {
@@ -125,7 +125,7 @@ def run_infinite_post_data_loop():
             response = requests.request("POST", invoke_url, headers=headers, data=payload)
             
             ### Send user_result JSON message
-            invoke_url = "https://nsfytprkye.execute-api.us-east-1.amazonaws.com/demo/topic/0a4ac73a0561.user"
+            invoke_url = "https://nsfytprkye.execute-api.us-east-1.amazonaws.com/demo/topics/0a4ac73a0561.user"
             payload = json.dumps({
                 "records": [
                     {
@@ -140,7 +140,7 @@ def run_infinite_post_data_loop():
             headers = {'Content-Type': 'application/vnd.kafka.json.v2+json'}
             response = requests.request("POST", invoke_url, headers=headers, data=payload)
 
-        print(response.status_code)            
+            print(response.status_code)            
 
 
 if __name__ == "__main__":
