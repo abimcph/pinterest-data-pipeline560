@@ -38,26 +38,6 @@ topic_dict = {'0a4ac73a0561.pin':'Pinterest Data',
               '0a4ac73a0561.geo':'Geographic Data',
               '0a4ac73a0561.user':'User Data'}
 
-# def send_to_api(data, topic):
-
-#     invoke_url = f"https://nsfytprkye.execute-api.us-east-1.amazonaws.com/demo/topic/"
-#     headers = {'Content-Type':  'application/vnd.kafka.json.v2+json'}
-
-#     if topic == '0a4ac73a0561.pin':
-#         corrected_data = data
-#     else:
-#         corrected_data = {key.replace('ind', 'index'): value for key, value in data.items()}
-
-#     payload = json.dumps({
-#         "records":[
-#             {"value": corrected_data}
-#             ]
-#         }, cls=DateTimeEncoder)
-
-#     response = requests.request("POST", invoke_url, headers=headers, data=payload)
-#     print(payload)
-#     print(response.status_code)
-#     print(response.json()) 
 
 def run_infinite_post_data_loop():
     while True:
@@ -107,7 +87,10 @@ def run_infinite_post_data_loop():
             }
             )
             headers = {'Content-Type': 'application/json'}
-            response = requests.request("POST", invoke_url, headers=headers, data=payload)
+            response = requests.request("PUT", invoke_url, headers=headers, data=payload)
+            print(payload)
+            print(response)
+            print(response.status_code)
 
             ### Send geo_result JSON message
             invoke_url = "https://nsfytprkye.execute-api.us-east-1.amazonaws.com/demo/streams/streaming-0a4ac73a0561-geo/record"
@@ -124,7 +107,10 @@ def run_infinite_post_data_loop():
             }
             )
             headers = {'Content-Type': 'application/json'}
-            response = requests.request("POST", invoke_url, headers=headers, data=payload)
+            response = requests.request("PUT", invoke_url, headers=headers, data=payload)
+            print(payload)
+            print(response)
+            print(response.status_code)
             
             ### Send user_result JSON message
             invoke_url = "https://nsfytprkye.execute-api.us-east-1.amazonaws.com/demo/streams/streaming-0a4ac73a0561-user/record"
